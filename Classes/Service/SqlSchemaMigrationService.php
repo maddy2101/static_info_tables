@@ -44,7 +44,7 @@ class SqlSchemaMigrationService
      *
      * @return array Array with information about table.
      */
-    public function getFieldDefinitions_database()
+    public function getFieldDefinitions_database() // phpcs:ignore PSR1.Methods.CamelCapsMethodName
     {
         $total = [];
         $tempKeys = [];

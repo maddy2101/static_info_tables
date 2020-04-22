@@ -79,8 +79,7 @@ class AfterExtensionInstall
             if (count($extensionKeyParts) === 3) {
                 $extTablesStaticSqlRelFile = PathUtility::stripPathSitePrefix(ExtensionManagementUtility::extPath($extensionKey)) . 'ext_tables_static+adt.sql';
             }
-            if (
-                // Base extension with data already imported once
+            if (// Base extension with data already imported once
                 (count($extensionKeyParts) === 3 && $this->registry->get('extensionDataImport', $extTablesStaticSqlRelFile))
                 // Language pack
                 || (count($extensionKeyParts) === 4 && strlen($extensionKeyParts[3]) === 2)

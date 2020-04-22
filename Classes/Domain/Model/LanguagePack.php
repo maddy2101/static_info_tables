@@ -180,12 +180,12 @@ class LanguagePack extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     public function __construct(
-            $author = '',
-            $authorCompany = '',
-            $authorEmail = '',
-            $locale = '',
-            $language = ''
-        ) {
+        $author = '',
+        $authorCompany = '',
+        $authorEmail = '',
+        $locale = '',
+        $language = ''
+    ) {
         $this->setAuthor($author);
         $this->setAuthorCompany($authorCompany);
         $this->setAuthorEmail($authorEmail);

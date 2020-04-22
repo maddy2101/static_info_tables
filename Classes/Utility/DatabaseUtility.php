@@ -122,7 +122,7 @@ class DatabaseUtility implements \TYPO3\CMS\Core\SingletonInterface
         $replace = ['\\\\', '\\\'', '\\0', '\\n', '\\r', '\\Z'];
         $lines = [];
         // Names of inserted fields
-        $fieldList = implode (', ', array_keys($fieldStructure));
+        $fieldList = implode(', ', array_keys($fieldStructure));
         // Select all rows from the table:
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable($table);

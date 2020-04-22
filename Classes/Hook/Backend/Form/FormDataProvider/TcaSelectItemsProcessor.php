@@ -165,7 +165,7 @@ class TcaSelectItemsProcessor
     /**
      * Replace the selector's uid index with configured indexField
      *
-     * @param array	 $PA: TCA select field parameters array
+     * @param array  $PA: TCA select field parameters array
      *
      * @return array The new $items array
      */
