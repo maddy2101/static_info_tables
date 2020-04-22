@@ -17,8 +17,9 @@ namespace SJBR\StaticInfoTables\Tests\Unit\Domain\Repository;
 
 use SJBR\StaticInfoTables\Domain\Model\AbstractEntity;
 use SJBR\StaticInfoTables\Domain\Repository\AbstractEntityRepository;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 
 /**
  * Testcase.
@@ -30,16 +31,18 @@ class AbstractEntityRepositoryTest extends UnitTestCase
     /**
      * @var AbstractEntityRepository|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $subject = null;
+    protected $subject;
 
     protected function setUp()
     {
         /** @var ObjectManagerInterface $objectManager */
-        $objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
-        $this->subject = $this->getMockForAbstractClass(
-            'SJBR\\StaticInfoTables\\Domain\\Repository\\AbstractEntityRepository',
-            [$objectManager]
-        );
+        $objectManager = $this->getMock(ObjectManagerInterface::class);
+        $this->subject = $this->getMockForAbstractClass(AbstractEntityRepository::class, [$objectManager]);
+    }
+
+    protected function tearDown()
+    {
+        unset($this->subject);
     }
 
     /**
@@ -48,16 +51,13 @@ class AbstractEntityRepositoryTest extends UnitTestCase
     public function initializeObjectSetsRespectStoragePidToFalse()
     {
         /** @var ObjectManagerInterface|\PHPUnit_Framework_MockObject_MockObject $objectManager */
-        $objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
-        $subject = $this->getMockForAbstractClass(
-            'SJBR\\StaticInfoTables\\Domain\\Repository\\AbstractEntityRepository',
-            [$objectManager]
-        );
+        $objectManager = $this->getMock(ObjectManagerInterface::class);
+        $subject = $this->getMockForAbstractClass(AbstractEntityRepository::class, [$objectManager]);
 
-        $querySettings = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+        $querySettings = $this->getMock(Typo3QuerySettings::class);
         $objectManager->expects($this->once())
             ->method('get')
-            ->with('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings')
+            ->with(Typo3QuerySettings::class)
             ->will($this->returnValue($querySettings));
         $querySettings->expects($this->once())->method('setRespectStoragePage')->with(false);
 
@@ -71,17 +71,13 @@ class AbstractEntityRepositoryTest extends UnitTestCase
     public function initializeObjectSetsDefaultQuerySettings()
     {
         /** @var ObjectManagerInterface|\PHPUnit_Framework_MockObject_MockObject $objectManager */
-        $objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
-        $subject = $this->getMock(
-            'SJBR\\StaticInfoTables\\Domain\\Repository\\AbstractEntityRepository',
-            ['setDefaultQuerySettings'],
-            [$objectManager]
-        );
+        $objectManager = $this->getMock(ObjectManagerInterface::class);
+        $subject = $this->getMock(AbstractEntityRepository::class, ['setDefaultQuerySettings'], [$objectManager]);
 
-        $querySettings = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+        $querySettings = $this->getMock(Typo3QuerySettings::class);
         $objectManager->expects($this->once())
             ->method('get')
-            ->with('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings')
+            ->with(Typo3QuerySettings::class)
             ->will($this->returnValue($querySettings));
 
         $subject->expects($this->once())->method('setDefaultQuerySettings')->with($querySettings);
