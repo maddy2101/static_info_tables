@@ -1,9 +1,8 @@
 {
   "name": "sjbr/static-info-tables",
   "description": "Data and API for countries, languages and currencies for use in TYPO3 CMS.",
-  "version": "6.7.5",
   "type": "typo3-cms-extension",
-  "license": "GPL-2.0+",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Stanislas Rolland",
@@ -23,16 +22,43 @@
     "issues": "https://forge.typo3.org/projects/extension-static_info_tables/issues"
   },
   "replace": {
-    "static_info_tables": "self.version",
+    "sjbr/static-info-tables": "self.version",
     "typo3-ter/static-info-tables": "self.version"
   },
   "require": {
-    "php": ">= 7.0, <7.4",
-    "typo3/cms-core": ">=8.7, <10.0"
+    "php": "~7.2 || ~7.3 || ~7.4",
+    "typo3/cms-core": "^9.5 || ^10.4"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.5",
+    "nimut/testing-framework": "2.x-dev || 3.x-dev || 4.x-dev || 5.x-dev"
   },
   "autoload": {
     "psr-4": {
       "SJBR\\StaticInfoTables\\": "Classes/"
     }
+  },
+  "config": {
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin"
+  },
+  "extra": {
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "app-dir": ".Build",
+      "web-dir": ".Build/public"
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "mkdir -p .Build/public/typo3conf/ext/",
+      "[ -L .Build/public/typo3conf/ext/static_info_tables ] || ln -snvf ../../../../. .Build/public/typo3conf/ext/static_info_tables"
+    ],
+    "extension-cleanup-for-release": [
+      "rm -rf Tests/",
+      "rm .gitignore",
+      "rm .travis.yml",
+      "rm composer.lock"
+    ]
   }
 }

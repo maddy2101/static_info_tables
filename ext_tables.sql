@@ -75,7 +75,7 @@ CREATE TABLE static_currencies (
 CREATE TABLE static_languages (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
-  	deleted smallint(6) DEFAULT '0' NOT NULL,
+	deleted smallint(6) DEFAULT '0' NOT NULL,
 	lg_iso_2 varchar(2) DEFAULT '' NOT NULL,
 	lg_name_local varchar(99) DEFAULT '' NOT NULL,
 	lg_name_en varchar(50) DEFAULT '' NOT NULL,
@@ -100,4 +100,8 @@ CREATE TABLE static_territories (
 	tr_parent_iso_nr int(11) DEFAULT '0' NOT NULL,
 	tr_name_en varchar(50) DEFAULT '' NOT NULL,
 	PRIMARY KEY (uid)
+);
+
+CREATE TABLE sys_language (
+	static_lang_isocode int(11) unsigned DEFAULT '0' NOT NULL
 );

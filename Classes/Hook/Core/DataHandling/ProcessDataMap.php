@@ -46,7 +46,7 @@ class ProcessDataMap
      *
      * @return void
      */
-    public function processDatamap_postProcessFieldArray($status, $table, $id, &$incomingFieldArray, &$fObj)
+    public function processDatamap_postProcessFieldArray($status, $table, $id, &$incomingFieldArray, &$fObj) // phpcs:ignore PSR1.Methods.CamelCapsMethodName
     {
         switch ($table) {
             case 'static_territories':
@@ -100,7 +100,7 @@ class ProcessDataMap
      *
      * @return void
      */
-    public function processDatamap_afterDatabaseOperations($status, $table, $id, &$fieldArray, &$fObj)
+    public function processDatamap_afterDatabaseOperations($status, $table, $id, &$fieldArray, &$fObj) // phpcs:ignore PSR1.Methods.CamelCapsMethodName
     {
         switch ($table) {
             case 'static_countries':

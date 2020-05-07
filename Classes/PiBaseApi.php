@@ -70,11 +70,11 @@ class PiBaseApi extends AbstractPlugin
     public $defaultLanguage;
     public $types = ['TERRITORIES', 'COUNTRIES', 'SUBDIVISIONS', 'CURRENCIES', 'LANGUAGES'];
     public $tables = [
-        'TERRITORIES' 	=> 'static_territories',
-        'COUNTRIES' 	=> 'static_countries',
-        'SUBDIVISIONS' 	=> 'static_country_zones',
-        'CURRENCIES' 	=> 'static_currencies',
-        'LANGUAGES' 	=> 'static_languages',
+        'TERRITORIES'   => 'static_territories',
+        'COUNTRIES'     => 'static_countries',
+        'SUBDIVISIONS'  => 'static_country_zones',
+        'CURRENCIES'    => 'static_currencies',
+        'LANGUAGES'     => 'static_languages',
     ];
 
     /**
@@ -181,7 +181,7 @@ class PiBaseApi extends AbstractPlugin
      *
      * @return string|bool The name of the object in the current language or false
      */
-    public function getStaticInfoName($type = 'COUNTRIES', $code, $country = '', $countrySubdivision = '', $local = false)
+    public function getStaticInfoName($type = 'COUNTRIES', $code = '', $country = '', $countrySubdivision = '', $local = false)
     {
         $names = false;
         if (in_array($type, $this->types) && trim($code)) {
@@ -368,8 +368,8 @@ class PiBaseApi extends AbstractPlugin
 
     /**
      * Getting all country subdivisions of a given country into an array
-     * 	where the key is the code of the subdivision
-     * 	and where the value is the name of the country subdivision in the current language
+     *  where the key is the code of the subdivision
+     *  and where the value is the name of the country subdivision in the current language
      * You can leave the ISO code empty and use the additional WHERE clause instead of it.
      *
      * @param string The ISO alpha-3 code of a country
@@ -379,7 +379,7 @@ class PiBaseApi extends AbstractPlugin
      *
      * @return array An array of names of country subdivisions
      */
-    public function initCountrySubdivisions($param, $addWhere='')
+    public function initCountrySubdivisions($param, $addWhere = '')
     {
         $nameArray = [];
         $table = $this->tables['SUBDIVISIONS'];
@@ -425,15 +425,15 @@ class PiBaseApi extends AbstractPlugin
 
     /**
      * Getting all currencies into an array
-     * 	where the key is the ISO alpha-3 code of the currency
-     * 	and where the value are the name of the currency in the current language
+     *  where the key is the ISO alpha-3 code of the currency
+     *  and where the value are the name of the currency in the current language
      *
      * @param string additional WHERE clause
      * @param mixed $addWhere
      *
      * @return array An array of names of currencies
      */
-    public function initCurrencies($addWhere='')
+    public function initCurrencies($addWhere = '')
     {
         $nameArray = [];
         $table = $this->tables['CURRENCIES'];
@@ -472,9 +472,9 @@ class PiBaseApi extends AbstractPlugin
 
     /**
      * Getting all languages into an array
-     * 	where the key is the ISO alpha-2 code of the language
-     * 	and where the value are the name of the language in the current language
-     * 	Note: we exclude sacred and constructed languages
+     *  where the key is the ISO alpha-2 code of the language
+     *  and where the value are the name of the language in the current language
+     *  Note: we exclude sacred and constructed languages
      *
      * @param string $addWhere: additional WHERE clause
      *
@@ -555,9 +555,9 @@ class PiBaseApi extends AbstractPlugin
     /**
      * Formatting an amount in the currency loaded by loadCurrencyInfo($currencyCode)
      *
-     * 	 '' - the currency code is not displayed
-     * 	 'RIGHT' - the code is displayed at the right of the amount
-     * 	 'LEFT' - the code is displayed at the left of the amount
+     *   '' - the currency code is not displayed
+     *   'RIGHT' - the code is displayed at the right of the amount
+     *   'LEFT' - the code is displayed at the left of the amount
      *
      * @param float $amount: An amount to be displayed in the loaded currency
      * @param string $displayCurrencyCode: A flag specifying if the the currency code should be displayed:
