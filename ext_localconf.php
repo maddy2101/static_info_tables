@@ -1,7 +1,7 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-static function ($extKey) {
+(function ($extKey) {
     // Get the extensions's configuration
     if (class_exists(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)) {
         $extConf = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
@@ -150,4 +150,4 @@ static function ($extKey) {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][] =
             \SJBR\StaticInfoTables\Hook\Backend\Recordlist\ModifyQuery::class;
     }
-}('static_info_tables');
+})('static_info_tables');
